@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Diversidade e Inclusão | CNPEM + DiverCidade HUB</title>
+    <meta name="description" content="Proposta customizada de Ecossistema de D&I para CNPEM">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* DiverCidade Brand Colors */
+            --divercidade-primary: #E91E8C;
+            /* Pink */
+            --divercidade-orange: #FF6B35;
+            /* Orange */
+            --divercidade-yellow: #FFD23F;
+            --divercidade-green: #00C9A7;
+            --divercidade-blue: #4361EE;
+            --divercidade-purple: #7B2CBF;
+
+            /* Mappings */
+            --color-primary-dark: #c31575;
+            --color-danger: #EA4335;
+
+            /* Light Theme Defaults */
+            --color-text-primary: #212121;
+            --color-text-secondary: #5F6368;
+            --color-text-light: #FFFFFF;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F5;
+            --color-bg-tertiary: #FFEFF6;
+            --color-border: #E0E0E0;
+
+            /* Spacing & UI */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.12);
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-xxl: 48px;
+
+            --transition-normal: 0.28s ease;
+        }
+
+        /* Dark Mode Overrides */
+        body.dark {
+            --color-bg-primary: #121212;
+            --color-bg-secondary: #1E1E1E;
+            --color-bg-tertiary: #2A2A3E;
+            --color-text-primary: #FFFFFF;
+            --color-text-secondary: #E8E8E8;
+            --color-border: rgba(255, 255, 255, 0.2);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.6);
+            --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background: var(--color-bg-secondary);
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--color-bg-primary);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            transition: var(--transition-normal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-md) var(--spacing-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--divercidade-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: var(--spacing-lg);
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--divercidade-primary);
+            background: rgba(233, 30, 140, 0.06);
+        }
+
+        /* Mobile Nav */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--color-text-primary);
+        }
+
+        body.dark .nav-link {
+            color: #E0E0E0;
+        }
+
+        body.dark .nav-link:hover {
+            color: #FF80AB;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--color-text-primary);
+            margin-left: 16px;
+        }
+
+        .theme-toggle .fa-moon {
+            display: none;
+        }
+
+        body.dark .theme-toggle .fa-moon {
+            display: inline-block;
+        }
+
+        body.dark .theme-toggle .fa-sun {
+            display: none;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--divercidade-primary) 0%, var(--divercidade-orange) 100%);
+            color: white;
+            padding: 160px var(--spacing-xl) var(--spacing-xxl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark .hero {
+            background: linear-gradient(135deg, rgba(233, 30, 140, 0.2), rgba(255, 107, 53, 0.15));
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-bottom: 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat-value {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .hero-stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Sections & Grid */
+        .section {
+            padding: 80px var(--spacing-xl);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+        }
+
+        .section-number {
+            background: var(--divercidade-primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 12px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+            margin-top: 8px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border);
+            transition: var(--transition-normal);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* KPI Cards */
+        .kpi-card {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            border: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        .kpi-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 4px;
+        }
+
+        .kpi-label {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        /* Tables & Tabs */
+        .table-container {
+            overflow-x: auto;
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            background: var(--color-bg-tertiary);
+            padding: 16px;
+            text-align: left;
+            color: var(--color-text-primary);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+        }
+
+        body.dark th {
+            background: #2A2A3E;
+            color: white;
+        }
+
+        .tab-container {
+            margin-top: 24px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 24px;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+        }
+
+        .tab.active {
+            border-color: var(--divercidade-primary);
+            color: var(--divercidade-primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            border-left: 2px solid var(--color-border);
+            margin-left: 16px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -49px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--divercidade-primary);
+            border-radius: 50%;
+            border: 4px solid var(--color-bg-secondary);
+        }
+
+        .timeline-date {
+            color: var(--divercidade-primary);
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-text-primary);
+        }
+
+        /* Team Scroll */
+        .team-scroll {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding-bottom: 16px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .team-member {
+            min-width: 280px;
+            scroll-snap-align: start;
+            background: var(--color-bg-primary);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--color-bg-tertiary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--divercidade-primary);
+        }
+
+        /* Calculator Styles */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+        }
+
+        .module-card {
+            background: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            transition: 0.2s;
+        }
+
+        .module-card:hover {
+            border-color: var(--divercidade-primary);
+            transform: translateY(-2px);
+        }
+
+        .module-info h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: var(--color-text-primary);
+        }
+
+        .module-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .module-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--color-border);
+            background: transparent;
+            color: var(--color-text-primary);
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .module-btn:hover {
+            background: var(--color-bg-secondary);
+        }
+
+        .summary-card {
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-total {
+            background: linear-gradient(90deg, var(--divercidade-primary), var(--divercidade-orange));
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .summary-total span {
+            display: block;
+        }
+
+        .total-value {
+            font-size: 32px;
+            font-weight: 900;
+            margin-top: 8px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--divercidade-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-dark);
+        }
+
+        .btn-outline {
+            border: 1px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Highlight Box (LGPD/Risk) */
+        .highlight-box {
+            background: rgba(255, 107, 53, 0.08);
+            border-left: 4px solid var(--divercidade-orange);
+            padding: 24px;
+            border-radius: 8px;
+            margin-top: 24px;
+        }
+
+        .highlight-title {
+            color: var(--divercidade-orange);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+
+            .grid-2,
+            .grid-3,
+            .grid-4,
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--color-bg-primary);
+                flex-direction: column;
+                padding: 16px;
+                box-shadow: var(--shadow-md);
+                display: none;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+        }
+
+        /* Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="../Carrefour/assets/images/logo-short-white.png" alt="DiverCidade"
+                    style="height: 60px; width: auto;"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                <span style="display:none">DiverCidade HUB</span>
+            </a>
+
+            <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="#contexto" class="nav-link">Objetivos</a></li>
+                <li><a href="#time" class="nav-link">Equipe</a></li>
+                <li><a href="#escopo" class="nav-link">Escopo</a></li>
+                <li><a href="#riscos" class="nav-link">Riscos & RACI</a></li>
+                <li><a href="#investimento" class="nav-link">Investimento</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">CNPEM + DiverCidade HUB</div>
+            <h1 class="hero-title">Diversidade, Inclusão e Bem-Estar: Um Ecossistema Científico</h1>
+            <p class="hero-subtitle">
+                Proposta modular e customizada para construir um ambiente inclusivo compatível com a excelência
+                científica do CNPEM, focando em PcDs e Liderança Técnica.
+            </p>
+            <div style="display: flex; gap: 16px;">
+                <a href="#investimento" class="btn btn-primary">Ver Investimento</a>
+                <a href="#escopo" class="btn btn-outline">Explorar Escopo</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">~1.950</div>
+                    <div class="hero-stat-label">Colaboradores Alvo</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">6</div>
+                    <div class="hero-stat-label">Blocos Estratégicos</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">Jan-Mai</div>
+                    <div class="hero-stat-label">Cronograma 2026</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Context & Objectives -->
+    <section class="section" id="contexto">
+        <div class="section-header">
+            <span class="section-number">1</span>
+            <h2 class="section-title">Objetivos SMART & Contexto</h2>
+            <p class="section-subtitle">Soluções artesanais para um ambiente técnico e complexo</p>
+        </div>
+
+        <div class="grid grid-2 animate-on-scroll">
+            <div class="card">
+                <h3 style="margin-bottom: 16px; color: var(--divercidade-primary);">
+                    <i class="fas fa-flask"></i> O Desafio CNPEM
+                </h3>
+                <p>O CNPEM opera em um contexto híbrido (público-privado). Identificamos a necessidade de mapeamento
+                    aprofundado de <strong>PcDs e neurodivergentes</strong>, adaptações não digitais para operações e
+                    superação da resistência de lideranças técnicas. Programas como CONAPS e COSMOS já existem, mas
+                    precisam de institucionalização.</p>
+            </div>
+            <div class="card">
+                <h3 style="margin-bottom: 16px; color: var(--divercidade-orange);">
+                    <i class="fas fa-bullseye"></i> Foco da Parceria
+                </h3>
+                <p>Construir um ecossistema que gere impacto mensurável e segurança institucional. A proposta foca em
+                    reduzir vieses na avaliação de desempenho e integrar saúde mental à governança, respeitando a lógica
+                    científica.</p>
+            </div>
+        </div>
+
+        <div class="grid grid-4" style="margin-top: 32px;">
+            <div class="kpi-card animate-on-scroll">
+                <div class="kpi-icon" style="background: var(--divercidade-purple);">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="kpi-value">70%</div>
+                <div class="kpi-label">Mapeamento da População</div>
+                <small style="color: var(--divercidade-orange);">Meta: 8 semanas</small>
+            </div>
+            <div class="kpi-card animate-on-scroll">
+                <div class="kpi-icon" style="background: var(--divercidade-blue);">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <div class="kpi-value">100%</div>
+                <div class="kpi-label">Política de Saúde Mental</div>
+                <small style="color: var(--divercidade-orange);">Meta: 12 semanas</small>
+            </div>
+            <div class="kpi-card animate-on-scroll">
+                <div class="kpi-icon" style="background: var(--divercidade-green);">
+                    <i class="fas fa-users-cog"></i>
+                </div>
+                <div class="kpi-value">80%</div>
+                <div class="kpi-label">Líderes Treinados</div>
+                <small style="color: var(--divercidade-orange);">Meta: 14 semanas</small>
+            </div>
+            <div class="kpi-card animate-on-scroll">
+                <div class="kpi-icon" style="background: var(--divercidade-primary);">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="kpi-value">1</div>
+                <div class="kpi-label">Painel de Indicadores</div>
+                <small style="color: var(--divercidade-orange);">Meta: 16 semanas</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section (New Data) -->
+    <section class="section" id="time" style="background: var(--color-bg-primary);">
+        <div class="section-header">
+            <span class="section-number">2</span>
+            <h2 class="section-title">Equipe & Comitê de Validação</h2>
+            <p class="section-subtitle">Especialistas em inclusão e um comitê dedicado para "Nada sobre nós, sem nós"
+            </p>
+        </div>
+
+        <div class="animate-on-scroll">
+            <h3 style="margin-bottom: 24px;">Time de Especialistas</h3>
+            <div class="team-scroll">
+                <div class="team-member">
+                    <div class="team-avatar"><i class="fas fa-user"></i></div>
+                    <h4>Aline Messias</h4>
+                    <p style="font-size: 13px; color: var(--color-text-secondary);">Especialista Inclusão PcD</p>
+                    <p style="font-size: 12px; margin-top: 8px;">10 anos de experiência, foco em ambientes acessíveis e
+                        mulher com deficiência.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar"><i class="fas fa-user-tie"></i></div>
+                    <h4>Milca da Silva</h4>
+                    <p style="font-size: 13px; color: var(--color-text-secondary);">Estratégia & Consultoria</p>
+                    <p style="font-size: 12px; margin-top: 8px;">20+ anos de carreira, ex-Nubank/Paraná Banco, Coord.
+                        Instituto XP.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar"><i class="fas fa-lightbulb"></i></div>
+                    <h4>Thierry Marcondes</h4>
+                    <p style="font-size: 13px; color: var(--color-text-secondary);">Inovação & Acessibilidade</p>
+                    <p style="font-size: 12px; margin-top: 8px;">Eng. Mecânico Unicamp, ex-L'Oréal/Accenture. Foco em
+                        comunidade surda.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar"><i class="fas fa-brain"></i></div>
+                    <h4>Caio Bogos</h4>
+                    <p style="font-size: 13px; color: var(--color-text-secondary);">Neurodiversidade</p>
+                    <p style="font-size: 12px; margin-top: 8px;">Forbes Under 30, fundador aTip/Mindversa. Foco em
+                        autismo e dados.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar"><i class="fas fa-database"></i></div>
+                    <h4>Noah Scheffel</h4>
+                    <p style="font-size: 13px; color: var(--color-text-secondary);">Tecnologia & RH</p>
+                    <p style="font-size: 12px; margin-top: 8px;">Intersectionality Tech/People, consultor estratégico de
+                        RH e Dados.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Committee Section -->
+        <div class="card animate-on-scroll" style="margin-top: 32px; border-left: 4px solid var(--divercidade-purple);">
+            <h3 style="color: var(--divercidade-purple); margin-bottom: 16px;">
+                <i class="fas fa-users-cog"></i> Diferencial: Comitê de Aprovação
+            </h3>
+            <p style="margin-bottom: 16px;">Camada estratégica para garantir que a comunicação seja segura e
+                compreensível, validada por quem vive a experiência.</p>
+            <div class="grid grid-3">
+                <div style="background: var(--color-bg-secondary); padding: 16px; border-radius: 8px;">
+                    <strong>Márcia Esperiano</strong>
+                    <div style="font-size: 12px; margin-top: 4px;">Pessoa com deficiência auditiva. Validação de leitura
+                        labial e clareza visual.</div>
+                </div>
+                <div style="background: var(--color-bg-secondary); padding: 16px; border-radius: 8px;">
+                    <strong>Alessandra</strong>
+                    <div style="font-size: 12px; margin-top: 4px;">Pessoa com deficiência visual. Validação de leitores
+                        de tela e contraste.</div>
+                </div>
+                <div style="background: var(--color-bg-secondary); padding: 16px; border-radius: 8px;">
+                    <strong>Noah Scheffel</strong>
+                    <div style="font-size: 12px; margin-top: 4px;">Pessoa com autismo (TEA). Validação de linguagem
+                        literal e sobrecarga.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scope / Blocks -->
+    <section class="section" id="escopo">
+        <div class="section-header">
+            <span class="section-number">3</span>
+            <h2 class="section-title">Escopo Modular</h2>
+            <p class="section-subtitle">6 Blocos de entrega para compor a solução ideal</p>
+        </div>
+
+        <div class="grid grid-3">
+            <!-- Bloco 1 -->
+            <div class="card animate-on-scroll" style="border-top: 4px solid var(--divercidade-primary);">
+                <h3 style="color: var(--divercidade-primary); margin-bottom: 8px;">Bloco 1: Diagnóstico</h3>
+                <p style="font-size: 14px; margin-bottom: 16px;">Mapeamento profundo e mapa de riscos.</p>
+                <ul style="font-size: 13px; color: var(--color-text-secondary); list-style: none;">
+                    <li><i class="fas fa-check"
+                            style="color: var(--divercidade-green); margin-right: 8px;"></i>Relatório Diagnóstico</li>
+                    <li><i class="fas fa-check" style="color: var(--divercidade-green); margin-right: 8px;"></i>Mapa de
+                        Riscos</li>
+                    <li><i class="fas fa-check"
+                            style="color: var(--divercidade-green); margin-right: 8px;"></i>Priorização</li>
+                </ul>
+            </div>
+
+            <!-- Bloco 2 -->
+            <div class="card animate-on-scroll" style="border-top: 4px solid var(--divercidade-orange);">
+                <h3 style="color: var(--divercidade-orange); margin-bottom: 8px;">Bloco 2: Soluções</h3>
+                <p style="font-size: 14px; margin-bottom: 16px;">Desenho de protocolos e ferramentas.</p>
+                <ul style="font-size: 13px; color: var(--color-text-secondary); list-style: none;">
+                    <li><i class="fas fa-check" style="color: var(--divercidade-green); margin-right: 8px;"></i>Guia
+                        Prático CNPEM</li>
+                    <li><i class="fas fa-check"
+                            style="color: var(--divercidade-green); margin-right: 8px;"></i>Protocolos Adaptados</li>
+                    <li><i class="fas fa-check"
+                            style="color: var(--divercidade-green); margin-right: 8px;"></i>Ferramentas (Docx/PDF)</li>
+                </ul>
+            </div>
+
+            <!-- Bloco 3 -->
+            <div class="card animate-on-scroll" style="border-top: 4px solid var(--divercidade-purple);">
+                <h3 style="color: var(--divercidade-purple); margin-bottom: 8px;">Bloco 3: Formação</h3>
+                <p style="font-size: 14px; margin-bottom: 16px;">Workshops e sensibilização (Unitário).</p>
+                <ul style="font-size: 13px; color: var(--color-text-secondary); list-style: none;">
+                    <li><i class="fas fa-check" style="color: var(--divercidade-green); margin-right: 8px;"></i>Workshop
+                        3h (até 30 pax)</li>
+                    <li><i class="fas fa-check"
+                            style="color: var(--divercidade-green); margin-right: 8px;"></i>Materiais de apoio</li>
+                    <li><i class="fas fa-check" style="color: var(--divercidade-green); margin-right: 8px;"></i>Registro
+                        e recomendações</li>
+                </ul>
+            </div>
+
+            <!-- Bloco 4 -->
+            <div class="card animate-on-scroll" style="border-top: 4px solid var(--divercidade-blue);">
+                <h3 style="color: var(--divercidade-blue); margin-bottom: 8px;">Bloco 4: Saúde Mental</h3>
+                <p style="font-size: 14px; margin-bottom: 16px;">Integração com CONAPS/COSMOS.</p>
+                <ul style="font-size: 13px; color: var(--color-text-secondary); list-style: none;">
+                    <li><i class="fas fa-check" style="color: var(--divercidade-green); margin-right: 8px;"></i>Horas
+                        Técnicas Especializadas</li>
+                    <li><i class="fas fa-check" style="color: var(--divercidade-green); margin-right: 8px;"></i>Fluxos
+                        de Cuidado</li>
+                    <li><i class="fas fa-check"
+                            style="color: var(--divercidade-green); margin-right: 8px;"></i>Prevenção Institucional</li>
+                </ul>
+            </div>
+
+            <!-- Bloco 5 -->
+            <div class="card animate-on-scroll" style="border-top: 4px solid var(--divercidade-green);">
+                <h3 style="color: var(--divercidade-green); margin-bottom: 8px;">Bloco 5: Governança</h3>
+                <p style="font-size: 14px; margin-bottom: 16px;">Indicadores e Dashboards.</p>
+                <ul style="font-size: 13px; color: var(--color-text-secondary); list-style: none;">
+                    <li><i class="fas fa-check" style="color: var(--divercidade-green); margin-right: 8px;"></i>Painel
+                        de Indicadores</li>
+                    <li><i class="fas fa-check"
+                            style="color: var(--divercidade-green); margin-right: 8px;"></i>Narrativa Institucional</li>
+                    <li><i class="fas fa-check"
+                            style="color: var(--divercidade-green); margin-right: 8px;"></i>Preparação p/ Auditoria</li>
+                </ul>
+            </div>
+
+            <!-- Bloco 6 -->
+            <div class="card animate-on-scroll" style="border-top: 4px solid var(--color-text-secondary);">
+                <h3 style="color: var(--color-text-secondary); margin-bottom: 8px;">Bloco 6: Sustentação</h3>
+                <p style="font-size: 14px; margin-bottom: 16px;">Acompanhamento contínuo.</p>
+                <ul style="font-size: 13px; color: var(--color-text-secondary); list-style: none;">
+                    <li><i class="fas fa-check"
+                            style="color: var(--divercidade-green); margin-right: 8px;"></i>Relatórios de Evolução</li>
+                    <li><i class="fas fa-check" style="color: var(--divercidade-green); margin-right: 8px;"></i>Ajustes
+                        de Rota</li>
+                    <li><i class="fas fa-check"
+                            style="color: var(--divercidade-green); margin-right: 8px;"></i>Consultoria sob demanda</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risks & RACI (Consolidated from New Files) -->
+    <section class="section" id="riscos">
+        <div class="section-header">
+            <span class="section-number">4</span>
+            <h2 class="section-title">Gestão de Riscos & Responsabilidades</h2>
+            <p class="section-subtitle">Matriz de mitigação e papéis claros (RACI)</p>
+        </div>
+
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active" onclick="openTab(event, 'tabRiscos')">Matriz de Riscos</div>
+                <div class="tab" onclick="openTab(event, 'tabRaci')">Matriz RACI</div>
+                <div class="tab" onclick="openTab(event, 'tabLgpd')">LGPD & Privacidade</div>
+            </div>
+
+            <div id="tabRiscos" class="tab-content active animate-on-scroll">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Risco</th>
+                                <th>Impacto</th>
+                                <th>Mitigação (Plano de Ação)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Falta de dados consolidados PcD</strong></td>
+                                <td><span style="color: var(--color-danger);">Alto</span></td>
+                                <td>Iniciar com métodos assistidos (papel/entrevista) em unidades críticas.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Resistência Liderança Técnica</strong></td>
+                                <td>Médio</td>
+                                <td>Formação prática e "hands-on" + coaching executivo.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Não conformidade LGPD</strong></td>
+                                <td><span style="color: var(--color-danger);">Alto</span></td>
+                                <td>DPIA obrigatório antes de pilotos; DPA para fornecedores.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Burocracia Institucional</strong></td>
+                                <td>Médio</td>
+                                <td>Planejamento faseado com buffers de aprovação no cronograma.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="tabRaci" class="tab-content">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Entregável</th>
+                                <th>DiverCidade</th>
+                                <th>CNPEM RH</th>
+                                <th>Direção/Gov</th>
+                                <th>TI / Legal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Diagnóstico</td>
+                                <td><strong>Responsável</strong></td>
+                                <td>Aprovador</td>
+                                <td>Consultado</td>
+                                <td>Informado</td>
+                            </tr>
+                            <tr>
+                                <td>Protocolos</td>
+                                <td><strong>Responsável</strong></td>
+                                <td>Aprovador</td>
+                                <td>Informado</td>
+                                <td>Consultado</td>
+                            </tr>
+                            <tr>
+                                <td>Saúde Mental</td>
+                                <td><strong>Co-Execução</strong></td>
+                                <td>Informado</td>
+                                <td>Aprovador</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Painéis/Dados</td>
+                                <td><strong>Responsável</strong></td>
+                                <td>Informado</td>
+                                <td>Aprovador</td>
+                                <td>Responsável (Infra)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="tabLgpd" class="tab-content">
+                <div class="highlight-box">
+                    <div class="highlight-title"><i class="fas fa-shield-alt"></i> Conformidade de Dados</div>
+                    <p>O ambiente CNPEM exige rigor. Riscos identificados com vínculos diversos
+                        (bolsistas/estrangeiros).
+                        <br><strong>Medidas:</strong> DPIA obrigatório, Minimização de coleta, Repositório Institucional
+                        (CNPEM) e Anonimização.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology & Timeline (Updated with CSV Data) -->
+    <section class="section" id="metodologia">
+        <div class="section-header">
+            <span class="section-number">5</span>
+            <h2 class="section-title">Cronograma Executivo (2026)</h2>
+            <p class="section-subtitle">Datas baseadas na validação de kick-off em Jan/2026</p>
+        </div>
+
+        <div class="grid grid-2">
+            <div>
+                <!-- Visualization Chart -->
+                <div class="card animate-on-scroll" style="margin-bottom: 24px; height: 350px;">
+                    <canvas id="timelineChart"></canvas>
+                </div>
+            </div>
+            <div class="card animate-on-scroll">
+                <h3 style="margin-bottom: 24px;">Marcos Principais</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">20 a 22 Jan</div>
+                        <div class="timeline-title">Kickoff & Alinhamento</div>
+                        <p style="font-size: 13px; color: var(--color-text-secondary);">Definição de owners e acesso.
+                        </p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">23 Jan - 28 Fev</div>
+                        <div class="timeline-title">Diagnóstico</div>
+                        <p style="font-size: 13px; color: var(--color-text-secondary);">Levantamento de campo.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">22 Mar - 10 Abr</div>
+                        <div class="timeline-title">Formações Piloto</div>
+                        <p style="font-size: 13px; color: var(--color-text-secondary);">Workshops iniciais.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">01 Mai - 14 Mai</div>
+                        <div class="timeline-title">Entrega Final</div>
+                        <p style="font-size: 13px; color: var(--color-text-secondary);">Painel e Relatório.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment / Calculator (Updated with Payment Terms) -->
+    <section class="section" id="investimento">
+        <div class="section-header">
+            <span class="section-number">6</span>
+            <h2 class="section-title">Calculadora de Investimento</h2>
+            <p class="section-subtitle">Simule o cenário ideal combinando blocos fixos e variáveis</p>
+        </div>
+
+        <div class="calculator-grid">
+            <div class="calculator-main">
+                <!-- Fixed Costs -->
+                <div class="card" style="margin-bottom: 24px;">
+                    <h3 style="margin-bottom: 16px; color: var(--divercidade-primary);"><i class="fas fa-lock"></i>
+                        Blocos Estruturantes (Fixos)</h3>
+                    <div class="module-card" style="border-left: 4px solid var(--divercidade-primary);">
+                        <div class="module-info">
+                            <h4>Bloco 1: Diagnóstico Profundo</h4>
+                            <small style="color: var(--color-text-secondary);">Mapeamento, entrevistas, riscos</small>
+                        </div>
+                        <div style="font-weight: 700;">R$ 60.000</div>
+                    </div>
+                    <div class="module-card" style="border-left: 4px solid var(--divercidade-primary);">
+                        <div class="module-info">
+                            <h4>Bloco 2: Desenho de Soluções</h4>
+                            <small style="color: var(--color-text-secondary);">Protocolos, guias, ferramentas</small>
+                        </div>
+                        <div style="font-weight: 700;">R$ 55.000</div>
+                    </div>
+                </div>
+
+                <!-- Variable Costs -->
+                <div class="card">
+                    <h3 style="margin-bottom: 16px; color: var(--divercidade-orange);"><i class="fas fa-sliders-h"></i>
+                        Blocos Modulares</h3>
+
+                    <!-- B3 Training -->
+                    <div class="module-card" data-module="training">
+                        <div class="module-info">
+                            <h4>Bloco 3: Treinamentos (Unidade)</h4>
+                            <small>R$ 18.000 / workshop (3h)</small>
+                        </div>
+                        <div class="module-controls">
+                            <button class="module-btn minus">-</button>
+                            <span class="module-count">2</span>
+                            <button class="module-btn plus">+</button>
+                        </div>
+                    </div>
+
+                    <!-- B4 Mental Health -->
+                    <div class="module-card" data-module="mental">
+                        <div class="module-info">
+                            <h4>Bloco 4: Saúde Mental (Horas)</h4>
+                            <small>R$ 650 / hora (min. 40h rec.)</small>
+                        </div>
+                        <div class="module-controls">
+                            <button class="module-btn minus" data-step="10">-</button>
+                            <span class="module-count">40</span>
+                            <button class="module-btn plus" data-step="10">+</button>
+                        </div>
+                    </div>
+
+                    <!-- B5 Governance -->
+                    <div class="module-card" data-module="gov">
+                        <div class="module-info">
+                            <h4>Bloco 5: Governança/BI (Horas)</h4>
+                            <small>R$ 600 / hora (rec. 30h)</small>
+                        </div>
+                        <div class="module-controls">
+                            <button class="module-btn minus" data-step="10">-</button>
+                            <span class="module-count">30</span>
+                            <button class="module-btn plus" data-step="10">+</button>
+                        </div>
+                    </div>
+
+                    <!-- B6 Sustainment -->
+                    <div class="module-card" data-module="sust">
+                        <div class="module-info">
+                            <h4>Bloco 6: Acompanhamento (Horas)</h4>
+                            <small>R$ 550 / hora (rec. 40h)</small>
+                        </div>
+                        <div class="module-controls">
+                            <button class="module-btn minus" data-step="10">-</button>
+                            <span class="module-count">40</span>
+                            <button class="module-btn plus" data-step="10">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Sidebar -->
+            <div class="calculator-sidebar">
+                <div class="card summary-card">
+                    <h4 style="margin-bottom: 16px;">Resumo Financeiro</h4>
+
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+                        <span>Fixos (B1+B2)</span>
+                        <strong>R$ 115.000</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+                        <span>Variáveis</span>
+                        <strong id="variable-display">R$ 0</strong>
+                    </div>
+
+                    <div class="summary-total">
+                        <span>INVESTIMENTO TOTAL</span>
+                        <span class="total-value" id="grand-total">R$ 0</span>
+                    </div>
+
+                    <!-- Payment Terms Breakdown -->
+                    <div
+                        style="background: var(--color-bg-secondary); padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+                        <div style="font-size: 12px; font-weight: 700; margin-bottom: 8px;">Fluxo de Pagamento
+                            (Estimado)</div>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
+                            <span>30% Sinal</span>
+                            <span id="pay-signal">R$ 0</span>
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
+                            <span>40% Entrega Diagnóstico</span>
+                            <span id="pay-mid">R$ 0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                            <span>30% Entrega Final</span>
+                            <span id="pay-end">R$ 0</span>
+                        </div>
+                    </div>
+
+                    <div
+                        style="font-size: 12px; color: var(--color-text-secondary); margin-bottom: 16px; text-align: center;">
+                        *Contingência de 10% não inclusa. Valores sujeitos a impostos.
+                    </div>
+
+                    <button class="btn btn-primary" style="width: 100%; margin-bottom: 8px;" onclick="window.print()">
+                        <i class="fas fa-file-pdf"></i> Salvar Proposta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Summary -->
+    <section class="section" style="padding-top: 0;">
+        <div class="card">
+            <h4 style="margin-bottom: 16px;"><i class="fas fa-file-contract"></i> Resumo Contratual</h4>
+            <div class="grid grid-2" style="font-size: 13px; color: var(--color-text-secondary);">
+                <ul>
+                    <li><strong>Aceite:</strong> 7 dias úteis para aprovação de entregáveis.</li>
+                    <li><strong>Propriedade Intelectual:</strong> Cessão perpétua ao CNPEM após pagamento integral.</li>
+                    <li><strong>Dados:</strong> DiverCidade não armazena dados sensíveis sem DPA.</li>
+                </ul>
+                <ul>
+                    <li><strong>Rescisão:</strong> Por conveniência com pagamento dos serviços prestados.</li>
+                    <li><strong>Foro:</strong> Campinas/SP.</li>
+                    <li><strong>Contingência:</strong> Acionamento apenas via Ordem de Mudança.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+        style="background: var(--color-bg-tertiary); padding: 80px var(--spacing-xl) 40px; margin-top: 64px; border-top: 1px solid var(--color-border); color: var(--color-text-secondary);">
+        <div
+            style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;">
+            <div>
+                <h3 style="color: var(--divercidade-primary); margin-bottom: 24px; font-weight: 900; font-size: 24px;">
+                    DiverCidade HUB</h3>
+                <p style="font-size: 14px; line-height: 1.6; opacity: 0.8; margin-bottom: 24px;">
+                    Pessoas de verdade em ambientes corporativos potentes e sustentáveis. Consultoria especializada em
+                    diversidade, equidade e inclusão.
+                </p>
+                <div style="display: flex; gap: 16px; font-size: 20px;">
+                    <a href="#" style="color: var(--divercidade-primary);"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="color: var(--divercidade-primary);"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4
+                    style="color: var(--color-text-primary); font-size: 16px; font-weight: 700; margin-bottom: 24px; text-transform: uppercase;">
+                    Emails</h4>
+                <div style="font-size: 14px; display: flex; flex-direction: column; gap: 12px;">
+                    <a href="mailto:contato@divercidade.net"
+                        style="text-decoration: none; color: inherit;">contato@divercidade.net</a>
+                    <a href="mailto:tamara@divercidade.net"
+                        style="text-decoration: none; color: inherit;">tamara@divercidade.net</a>
+                    <a href="mailto:Pedro@divercidade.net"
+                        style="text-decoration: none; color: inherit;">Pedro@divercidade.net</a>
+                </div>
+            </div>
+            <div>
+                <h4
+                    style="color: var(--color-text-primary); font-size: 16px; font-weight: 700; margin-bottom: 24px; text-transform: uppercase;">
+                    Contatos</h4>
+                <div style="font-size: 14px; display: flex; flex-direction: column; gap: 12px;">
+                    <span>+55 19 920 010 580</span>
+                    <span>+55 19 98979-7970</span>
+                    <span>+55 19 99883-7282</span>
+                </div>
+            </div>
+            <div>
+                <h4
+                    style="color: var(--color-text-primary); font-size: 16px; font-weight: 700; margin-bottom: 24px; text-transform: uppercase;">
+                    Digital</h4>
+                <div style="font-size: 14px; display: flex; flex-direction: column; gap: 12px;">
+                    <a href="https://www.divercidade.net" target="_blank"
+                        style="text-decoration: none; color: inherit;">www.divercidade.net</a>
+                    <span>@divercidade_hub</span>
+                    <span>divercidade</span>
+                </div>
+            </div>
+        </div>
+        <div
+            style="max-width: 1400px; margin: 60px auto 0; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center; font-size: 13px; opacity: 0.7;">
+            <p>&copy; 2026 DiverCidade HUB. Todos os direitos reservados. Projeto CNPEM.</p>
+            <div style="text-align: right;">
+                <p><strong>Cliente:</strong> CNPEM | <strong>Data:</strong> Janeiro 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // --- Theme Toggle ---
+        const themeBtn = document.getElementById('themeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+            updateChartsTheme();
+        });
+
+        // --- Mobile Nav ---
+        document.getElementById('navToggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // --- Tabs Logic ---
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.className += " active";
+        }
+
+        // --- Animations ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // --- Calculator Logic ---
+        const Calculator = {
+            prices: {
+                training: 18000,
+                mental: 650,
+                gov: 600,
+                sust: 550
+            },
+            fixedTotal: 115000,
+            counts: {
+                training: 4,
+                mental: 40,
+                gov: 30,
+                sust: 60
+            },
+
+            init() {
+                this.updateUI();
+                this.bindEvents();
+            },
+
+            bindEvents() {
+                document.querySelectorAll('.module-card[data-module]').forEach(card => {
+                    const type = card.dataset.module;
+                    const step = parseInt(card.querySelector('button').dataset.step) || 1;
+
+                    card.querySelector('.minus').onclick = () => {
+                        if (this.counts[type] >= step) {
+                            this.counts[type] -= step;
+                            this.updateUI();
+                        }
+                    };
+
+                    card.querySelector('.plus').onclick = () => {
+                        this.counts[type] += step;
+                        this.updateUI();
+                    };
+                });
+            },
+
+            updateUI() {
+                for (let key in this.counts) {
+                    const el = document.querySelector(`.module-card[data-module="${key}"] .module-count`);
+                    if (el) el.textContent = this.counts[key];
+                }
+
+                let variableTotal =
+                    (this.counts.training * this.prices.training) +
+                    (this.counts.mental * this.prices.mental) +
+                    (this.counts.gov * this.prices.gov) +
+                    (this.counts.sust * this.prices.sust);
+
+                let grandTotal = this.fixedTotal + variableTotal;
+
+                document.getElementById('variable-display').textContent = this.formatMoney(variableTotal);
+                document.getElementById('grand-total').textContent = this.formatMoney(grandTotal);
+
+                // Update Payment Terms Breakdown
+                document.getElementById('pay-signal').textContent = this.formatMoney(grandTotal * 0.30);
+                document.getElementById('pay-mid').textContent = this.formatMoney(grandTotal * 0.40);
+                document.getElementById('pay-end').textContent = this.formatMoney(grandTotal * 0.30);
+            },
+
+            formatMoney(val) {
+                return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            }
+        };
+
+        Calculator.init();
+
+        // --- Charts ---
+        const chartColor = () => body.classList.contains('dark') ? '#FFFFFF' : '#212121';
+
+        // Updated Timeline Chart based on CSV dates
+        const ctxTimeline = document.getElementById('timelineChart').getContext('2d');
+        let timelineChart = new Chart(ctxTimeline, {
+            type: 'bar',
+            data: {
+                labels: ['Diagnóstico', 'Co-Design', 'Piloto/Formação', 'Entrega Final'],
+                datasets: [{
+                    label: 'Dias de Duração (Estimado)',
+                    data: [36, 20, 19, 13], // Data derived from CSV
+                    backgroundColor: ['#E91E8C', '#FF6B35', '#00C9A7', '#4361EE'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { color: chartColor() }, title: { display: true, text: 'Dias Úteis (aprox)' } },
+                    y: { ticks: { color: chartColor() } }
+                }
+            }
+        });
+
+        function updateChartsTheme() {
+            const color = chartColor();
+            timelineChart.options.scales.x.ticks.color = color;
+            timelineChart.options.scales.y.ticks.color = color;
+            timelineChart.update();
+        }
+    </script>
+</body>
+
+</html>
