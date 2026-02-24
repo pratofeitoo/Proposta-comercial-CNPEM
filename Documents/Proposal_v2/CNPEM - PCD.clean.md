@@ -1,3 +1,7 @@
+---
+created: 2026-02-24T04:22
+updated: 2026-02-24T04:30
+---
 # Plano Estratégico de Ações para a Comunidade de Pessoas com Deficiência – 2026
 
 🌟 PROGRAMA INCLUSÃO REAL — Versão limpa (para cliente)
@@ -11,7 +15,7 @@ O Programa Inclusão Real propõe um conjunto integrado de ações (diagnóstico
 Nota: metas e baselines abaixo são propostas e devem ser validadas no kickoff/diagnóstico.
 
 | Objetivo                                               | Resultado esperado                              |                                       Métrica / Método de medição | Baseline                      |                                                       Meta (prazo) | Responsável               |
-| ------------------------------------------------------ | ----------------------------------------------- | ----------------------------------------------------------------: | ----------------------------- | -----------------------------------------------------------------: | ------------------------- |
+|--------------------------------------------------------|-------------------------------------------------|------------------------------------------------------------------:|-------------------------------|-------------------------------------------------------------------:|---------------------------|
 | Mapear barreiras estruturais, culturais e operacionais | Lista priorizada de barreiras com plano de ação |    Número de barreiras identificadas; prioridade técnica aplicada | A ser definido no diagnóstico |                           Priorização e plano até o final do Mês 2 | PM (DiverCidade)          |
 | Desenvolver lideranças preparadas para inclusão        | Programa de capacitação para lideranças         | Nº de lideranças treinadas; avaliação pós-treinamento (NPS/score) | A ser definido                | 80% das lideranças-alvo treinadas e avaliação média ≥4/5 até Mês 5 | Líder de Formação         |
 | Fortalecer a comunidade PcD interna                    | Rede de apoio e mentoria ativa                  |                Nº de membros ativos; taxa de retenção/engajamento | A ser definido                |       Rede ativa com roadmap e 6 mentorias implementadas até Mês 6 | Coordenador de Comunidade |
@@ -71,6 +75,28 @@ Sugestão operacional (preservando valores originais e adicionando contingência
 | Subtotal                         |     95.000 |
 | Contingência (10%)               |      9.500 |
 | Total sugerido                   |    104.500 |
+
+### Opção B — Ajuste de escopo para manter teto de R$ 80.000 (detalhado)
+
+Para acomodar o teto orçamentário de R$ 80.000 proponho o seguinte ajuste de escopo (reduções concentradas no Pilar 2 e na gestão):
+
+| Item                             | Valor (R$) |
+| -------------------------------- | ---------: |
+| Pilar 1 – Diagnóstico            |     15.000 |
+| Pilar 2 – Formação (reduzido)    |     30.000 |
+| Pilar 3 – Fortalecimento         |     20.000 |
+| Pilar 4 – Governança             |     10.000 |
+| Gestão, coordenação e relatórios |      5.000 |
+| **Total**                        |     80.000 |
+
+Resumo das mudanças e impactos:
+- Pilar 2: reduzir sessões presenciais e converter 2 módulos para e-learning; priorizar lideranças-chave para sessões presenciais (redução estimada ~R$10.000).
+- Gestão: reduzir relatórios operacionais e simplificar templates (redução estimada ~R$5.000).
+
+Consequências e próximos passos:
+- Atualizar `training_agenda.xlsx` para refletir 1 presencial + webinars + módulos assíncronos.
+- Atualizar `CNPEM - PCD.contract-ready.md` (anexo) com a versão final do escopo e a tabela de preços.
+- Incluir item no `CNPEM - PCD.risk_log.md` sobre risco de menor alcance de formação e plano de mitigação.
 
 Se o cliente confirmar teto de R$80.000,00, será necessária renegociação de escopo (ex.: reduzir número de workshops ou módulos de formação).
 

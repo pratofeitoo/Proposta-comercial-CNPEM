@@ -1,0 +1,8 @@
+Session ID,Title,Type,Duration (hours),Audience,Participants target,Lead,Deliverables,Acceptance Criteria,Scheduled (relative),Estimated Effort (hours)
+S1,Leadership Workshop (In-person),Presential,6,Leadership,12-15,"Líder de Formação","workshop_materials.zip;attendance_list.csv","Workshop delivered; post-survey avg >=4/5","Month 3 Week 1",24
+S2,Webinar: Sensitization (synchronous),Webinar,2,Managers & HR,~50,"Líder de Formação","webinar_recording.mp4;slides.pdf","Recording + participant list; post-webinar survey","Month 3 Week 2",12
+S3,Webinar: Practical Accommodations,Webinar,2,HR & Operations,~50,"Líder de Formação","webinar_recording.mp4;checklist.pdf","Recording + action checklist; participant list","Month 4 Week 1",12
+S4,E-learning Module 1: Accessibility Basics,E-learning,2,All employees,Self-paced,"Equipe de Pesquisa / Líder de Formação","module1_content.zip;quiz.csv","Module published + quiz operational; completion metrics available","Month 3-5",40
+S5,E-learning Module 2: Inclusive Communication,E-learning,2,All employees,Self-paced,"Líder de Formação","module2_content.zip;quiz.csv","Module published + quiz operational; completion metrics available","Month 3-5",40
+S6,Multipliers Kit & Microtraining,Microtraining,1,Multiplicadores,~20,"Coordenador de Comunidade","multipliers_kit.zip;microtraining_guide.pdf","Kit delivered; 1 micro-session delivered; adoption plan","Month 4 Week 2",16
+S7,Post-training assessment & report,Assessment,8,Project Team,—,"Analista de Dados","post_training_report.pdf;dashboard","Assessment completed; dashboard with KPIs delivered","Month 6-7",20

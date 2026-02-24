@@ -16,7 +16,7 @@ Sugestão de cronograma de pagamento (a negociar):
 - 30% na entrega do relatório final e dashboard (Mês 8)
 - 10% retenção para aceite final / ajustes (liberação após 30 dias com aceitação)
 
-Observação: valores devem ser adaptados ao total aprovado (R$ 80.000 ou R$ 95.000 conforme decisão).
+Observação: valores devem ser adaptados ao total aprovado. A versão de escopo reduzido (Opção B) mantém o total em R$ 80.000 — ver Anexo E / seção 12 abaixo.
 
 ## 4. Obrigações das partes
 - Contratante (CNPEM): fornecer acesso, contatos, infraestrutura e apoio para divulgação interna; disponibilizar responsáveis para entrevistas e revisões.
@@ -28,7 +28,9 @@ Observação: valores devem ser adaptados ao total aprovado (R$ 80.000 ou R$ 95.
 ## 6. Confidencialidade e Dados (LGPD)
 - As partes concordam em adotar medidas técnicas e organizacionais para proteger dados pessoais.
 - A coleta e tratamento de dados pessoais será realizada apenas mediante base legal adequada e consentimento quando aplicável.
-- Dados pessoais coletados serão retidos pelo prazo estritamente necessário (sugerido: 30 dias) e, após isso, será realizada a eliminação segura, salvo requisitos legais em contrário.
+- Dados pessoais sensíveis (saúde, deficiência) serão retidos pelo prazo estritamente necessário (sugerido: 12 meses para dados identificáveis; análise apenas em forma agregada).
+- Após o período de retenção, será realizada a eliminação segura ou anonimização, salvo requisitos legais em contrário.
+- A Contratada não armazenará dados sensíveis sem autorização expressa e contrato específico (DPA).
 
 ## 7. Rescisão
 - Rescisão por justa causa mediante notificação com prazo de correção (30 dias) para violações substanciais.
@@ -44,11 +46,37 @@ Observação: valores devem ser adaptados ao total aprovado (R$ 80.000 ou R$ 95.
 - Cada entregável será aceito mediante checklist acordado e homologação por parte do Contratante (prazos para aceite: 10 dias úteis após submissão).
 
 ## 11. Anexos e referências
-- Anexo A: Escopo, entregáveis, cronograma e orçamento (referência: `CNPEM - PCD.clean.md`).
-- Anexo B: Pressuposições e lista de riscos (`CNPEM - PCD.risk_log.md`).
-- Anexo C: RACI (`CNPEM - PCD.RACI.md`).
-- Anexo D: Timeline (`CNPEM - PCD.timeline.csv`).
+
+| Anexo | Descrição |
+|-------|-----------|
+| A | Escopo, entregáveis, cronograma e orçamento (`CNPEM - PCD.clean.md`) |
+| B | Equipe responsável (`CNPEM - PCD.team.md`) |
+| C | Pressuposições e lista de riscos (`CNPEM - PCD.risk_log.md`) |
+| D | Matriz RACI (`CNPEM - PCD.RACI.md`) |
+| E | Timeline detalhado (`CNPEM - PCD.timeline.csv`) |
+| F | Agenda de treinamentos (`CNPEM - PCD.training_agenda.csv`) |
 
 ---
 
-*Observação: Este rascunho destina-se a servir como base para minuta contratual — submeter ao jurídico para redação final.*
+## 12. Orçamento Final — Aprovado
+
+| Item                             | Valor (R$) |
+| -------------------------------- | ---------: |
+| Pilar 1 – Diagnóstico            |     15.000 |
+| Pilar 2 – Formação               |     30.000 |
+| Pilar 3 – Fortalecimento         |     20.000 |
+| Pilar 4 – Governança             |     10.000 |
+| Gestão, coordenação e relatórios |      5.000 |
+| **Total**                        |     80.000 |
+
+### Cronograma de Pagamentos
+
+| Parcela | Valor | Momento |
+|---------|------:|---------|
+| 1ª | R$ 24.000 | Assinatura do contrato |
+| 2ª | R$ 24.000 | Término da fase de capacitação (Mês 5) |
+| 3ª | R$ 24.000 | Entrega do relatório final (Mês 8) |
+| Retenção | R$ 8.000 | Aceite final (30 dias após entrega) |
+
+---
+
