@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa Inclusão Real | CNPEM + DiverCidade HUB</title>
+    <meta name="description" content="Plano Estratégico de Ações para a Comunidade de Pessoas com Deficiência – 2026">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* DiverCidade Brand Colors */
+            --divercidade-primary: #E91E8C;
+            /* Pink */
+            --divercidade-orange: #FF6B35;
+            /* Orange */
+            --divercidade-yellow: #FFD23F;
+            --divercidade-green: #00C9A7;
+            --divercidade-blue: #4361EE;
+            --divercidade-purple: #7B2CBF;
+
+            /* Mappings */
+            --color-primary-dark: #c31575;
+            --color-danger: #EA4335;
+
+            /* Light Theme Defaults */
+            --color-text-primary: #212121;
+            --color-text-secondary: #5F6368;
+            --color-text-light: #FFFFFF;
+            --color-bg-primary: #FFFFFF;
+            --color-bg-secondary: #F5F5F5;
+            --color-bg-tertiary: #FFEFF6;
+            --color-border: #E0E0E0;
+
+            /* Spacing & UI */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.12);
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-xxl: 48px;
+
+            --transition-normal: 0.28s ease;
+        }
+
+        /* Dark Mode Overrides */
+        body.dark {
+            --color-bg-primary: #121212;
+            --color-bg-secondary: #1E1E1E;
+            --color-bg-tertiary: #2A2A3E;
+            --color-text-primary: #FFFFFF;
+            --color-text-secondary: #E8E8E8;
+            --color-border: rgba(255, 255, 255, 0.2);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.6);
+            --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background: var(--color-bg-secondary);
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--color-bg-primary);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            transition: var(--transition-normal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-md) var(--spacing-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--divercidade-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: var(--spacing-lg);
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--divercidade-primary);
+            background: rgba(233, 30, 140, 0.06);
+        }
+
+        /* Mobile Nav */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--color-text-primary);
+        }
+
+        body.dark .nav-link {
+            color: #E0E0E0;
+        }
+
+        body.dark .nav-link:hover {
+            color: #FF80AB;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--color-text-primary);
+            margin-left: 16px;
+        }
+
+        .theme-toggle .fa-moon {
+            display: none;
+        }
+
+        body.dark .theme-toggle .fa-moon {
+            display: inline-block;
+        }
+
+        body.dark .theme-toggle .fa-sun {
+            display: none;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--divercidade-primary) 0%, var(--divercidade-orange) 100%);
+            color: white;
+            padding: 160px var(--spacing-xl) var(--spacing-xxl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark .hero {
+            background: linear-gradient(135deg, rgba(233, 30, 140, 0.2), rgba(255, 107, 53, 0.15));
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-bottom: 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat-value {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .hero-stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Sections & Grid */
+        .section {
+            padding: 80px var(--spacing-xl);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+        }
+
+        .section-number {
+            background: var(--divercidade-primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 12px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+            margin-top: 8px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border);
+            transition: var(--transition-normal);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* KPI Cards */
+        .kpi-card {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            border: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        .kpi-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 4px;
+        }
+
+        .kpi-label {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        /* Tables & Tabs */
+        .table-container {
+            overflow-x: auto;
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 600px;
+        }
+
+        th {
+            background: var(--color-bg-tertiary);
+            padding: 16px;
+            text-align: left;
+            color: var(--color-text-primary);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+        }
+
+        body.dark th {
+            background: #2A2A3E;
+            color: white;
+        }
+
+        .tab-container {
+            margin-top: 24px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+        }
+
+        .tab.active {
+            border-color: var(--divercidade-primary);
+            color: var(--divercidade-primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            border-left: 2px solid var(--color-border);
+            margin-left: 16px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -49px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--divercidade-primary);
+            border-radius: 50%;
+            border: 4px solid var(--color-bg-secondary);
+        }
+
+        .timeline-date {
+            color: var(--divercidade-primary);
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-text-primary);
+        }
+
+        /* Team Scroll */
+        .team-scroll {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding-bottom: 16px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .team-member {
+            min-width: 320px;
+            scroll-snap-align: start;
+            background: var(--color-bg-primary);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--color-bg-tertiary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--divercidade-primary);
+        }
+
+        /* Calculator Styles (Adapted for Budget Display) */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+        }
+
+        .module-card {
+            background: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            transition: 0.2s;
+        }
+
+        .module-card:hover {
+            border-color: var(--divercidade-primary);
+            transform: translateY(-2px);
+        }
+
+        .module-info h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: var(--color-text-primary);
+        }
+
+        .summary-card {
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-total {
+            background: linear-gradient(90deg, var(--divercidade-primary), var(--divercidade-orange));
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .summary-total span {
+            display: block;
+        }
+
+        .total-value {
+            font-size: 32px;
+            font-weight: 900;
+            margin-top: 8px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--divercidade-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-dark);
+        }
+
+        .btn-outline {
+            border: 1px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Highlight Box (LGPD/Risk) */
+        .highlight-box {
+            background: rgba(255, 107, 53, 0.08);
+            border-left: 4px solid var(--divercidade-orange);
+            padding: 24px;
+            border-radius: 8px;
+            margin-top: 24px;
+        }
+
+        .highlight-title {
+            color: var(--divercidade-orange);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+
+            .grid-2,
+            .grid-3,
+            .grid-4,
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--color-bg-primary);
+                flex-direction: column;
+                padding: 16px;
+                box-shadow: var(--shadow-md);
+                display: none;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+        }
+
+        /* Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="./assets/images/logo-short-white.png" alt="DiverCidade HUB Logo" style="height: 80px; width: auto; object-fit: contain;">
+            </a>
+
+            <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="#objetivos" class="nav-link">Objetivos</a></li>
+                <li><a href="#entregaveis" class="nav-link">Entregáveis</a></li>
+                <li><a href="#cronograma" class="nav-link">Cronograma</a></li>
+                <li><a href="#riscos" class="nav-link">Riscos & RACI</a></li>
+                <li><a href="#pressuposicoes" class="nav-link">Pressuposições</a></li>
+                <li><a href="#equipe" class="nav-link">Equipe</a></li>
+                <li><a href="#orcamento" class="nav-link">Orçamento</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Programa Inclusão Real</div>
+            <h1 class="hero-title">Plano Estratégico para Comunidade PcD – 2026</h1>
+            <p class="hero-subtitle">
+                Conjunto integrado de ações (diagnóstico, formação, fortalecimento e governança) para promover inclusão sustentável da comunidade PcD na instituição.
+            </p>
+            <div style="display: flex; gap: 16px;">
+                <a href="#orcamento" class="btn btn-primary">Ver Investimento</a>
+                <a href="#cronograma" class="btn btn-outline">Explorar Cronograma</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">8 Meses</div>
+                    <div class="hero-stat-label">Duração Estimada</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">5</div>
+                    <div class="hero-stat-label">Objetivos SMART</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">R$ 80k</div>
+                    <div class="hero-stat-label">Orçamento Aprovado</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: Objectives -->
+    <section class="section" id="objetivos">
+        <div class="section-header">
+            <span class="section-number">1</span>
+            <h2 class="section-title">Objetivos SMART</h2>
+            <p class="section-subtitle">Metas claras e mensuráveis para o sucesso do programa</p>
+        </div>
+
+        <div class="card animate-on-scroll">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Objetivo</th>
+                            <th>Resultado Esperado</th>
+                            <th>Baseline</th>
+                            <th>Métrica / Meta</th>
+                            <th>Prazo</th>
+                            <th>Responsável</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Mapear barreiras</strong></td>
+                            <td>Lista priorizada com plano de ação</td>
+                            <td><em style="color: var(--color-text-secondary);">A ser definido no diagnóstico</em></td>
+                            <td>Priorização e plano definidos</td>
+                            <td>Mês 2</td>
+                            <td>PM (DiverCidade)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Desenvolver lideranças</strong></td>
+                            <td>Programa de capacitação</td>
+                            <td><em style="color: var(--color-text-secondary);">A ser definido</em></td>
+                            <td>80% treinados (Score ≥4/5)</td>
+                            <td>Mês 5</td>
+                            <td>Líder de Formação</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fortalecer comunidade PcD</strong></td>
+                            <td>Rede de apoio e mentoria</td>
+                            <td><em style="color: var(--color-text-secondary);">A ser definido</em></td>
+                            <td>Rede ativa, 6 mentorias</td>
+                            <td>Mês 6</td>
+                            <td>Coordenador de Comunidade</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Estruturar protocolos</strong></td>
+                            <td>Pack de políticas aprovados</td>
+                            <td><em style="color: var(--color-text-secondary);">A ser definido</em></td>
+                            <td>Integrados nos processos</td>
+                            <td>Mês 7</td>
+                            <td>PM / Jurídico</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Indicadores de impacto</strong></td>
+                            <td>Dashboard de KPIs</td>
+                            <td><em style="color: var(--color-text-secondary);">A ser definido</em></td>
+                            <td>Primeira medição realizada</td>
+                            <td>Mês 8</td>
+                            <td>Analista de Dados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Deliverables -->
+    <section class="section" id="entregaveis">
+        <div class="section-header">
+            <span class="section-number">2</span>
+            <h2 class="section-title">Escopo & Entregáveis</h2>
+            <p class="section-subtitle">Artefatos tangíveis ao longo do projeto</p>
+        </div>
+
+        <div class="grid grid-2">
+            <div class="card animate-on-scroll" style="border-top: 4px solid var(--divercidade-primary);">
+                <h3 style="color: var(--divercidade-primary); margin-bottom: 8px;">Pilar 1: Diagnóstico</h3>
+                <ul style="font-size: 13px; color: var(--color-text-secondary); list-style: none;">
+                    <li style="margin-bottom:8px"><i class="fas fa-file-alt" style="margin-right: 8px;"></i>Pesquisa Interna (Relatório PDF)</li>
+                    <li style="margin-bottom:8px"><i class="fas fa-users" style="margin-right: 8px;"></i>Ata de Grupos Focais</li>
+                    <li style="margin-bottom:8px"><i class="fas fa-map" style="margin-right: 8px;"></i>Mapa de Barreiras (XLSX)</li>
+                </ul>
+            </div>
+
+            <div class="card animate-on-scroll" style="border-top: 4px solid var(--divercidade-orange);">
+                <h3 style="color: var(--divercidade-orange); margin-bottom: 8px;">Pilar 2: Formação</h3>
+                <ul style="font-size: 13px; color: var(--color-text-secondary); list-style: none;">
+                    <li style="margin-bottom:8px"><i class="fas fa-chalkboard-teacher" style="margin-right: 8px;"></i>Workshops Presenciais (Liderança)</li>
+                    <li style="margin-bottom:8px"><i class="fas fa-laptop" style="margin-right: 8px;"></i>Módulos E-learning & Webinars</li>
+                    <li style="margin-bottom:8px"><i class="fas fa-check-circle" style="margin-right: 8px;"></i>Avaliações pós-treino (≥4/5)</li>
+                </ul>
+            </div>
+
+            <div class="card animate-on-scroll" style="border-top: 4px solid var(--divercidade-purple);">
+                <h3 style="color: var(--divercidade-purple); margin-bottom: 8px;">Pilar 3: Fortalecimento</h3>
+                <ul style="font-size: 13px; color: var(--color-text-secondary); list-style: none;">
+                    <li style="margin-bottom:8px"><i class="fas fa-user-friends" style="margin-right: 8px;"></i>Programa de Mentoria (6 matches)</li>
+                    <li style="margin-bottom:8px"><i class="fas fa-box" style="margin-right: 8px;"></i>Kit de Multiplicadores</li>
+                    <li style="margin-bottom:8px"><i class="fas fa-network-wired" style="margin-right: 8px;"></i>Rede de Apoio PcD</li>
+                </ul>
+            </div>
+
+            <div class="card animate-on-scroll" style="border-top: 4px solid var(--divercidade-blue);">
+                <h3 style="color: var(--divercidade-blue); margin-bottom: 8px;">Pilar 4: Governança</h3>
+                <ul style="font-size: 13px; color: var(--color-text-secondary); list-style: none;">
+                    <li style="margin-bottom:8px"><i class="fas fa-gavel" style="margin-right: 8px;"></i>Termos do Comitê Consultivo</li>
+                    <li style="margin-bottom:8px"><i class="fas fa-chart-line" style="margin-right: 8px;"></i>Dashboard de Impacto (KPIs)</li>
+                    <li style="margin-bottom:8px"><i class="fas fa-book" style="margin-right: 8px;"></i>Relatório Final & Recomendações</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Detailed Entregáveis Table -->
+        <div style="margin-top: 48px;">
+            <h3 style="margin-bottom: 24px; color: var(--color-text-primary);"><i class="fas fa-table" style="margin-right: 8px;"></i>Tabela Detalhada de Entregáveis</h3>
+            <div class="card animate-on-scroll">
+                <div class="table-container">
+                    <table style="font-size: 13px;">
+                        <thead>
+                            <tr>
+                                <th>Entregável</th>
+                                <th>Formato Sugerido</th>
+                                <th>Critério de Aceitação</th>
+                                <th>Owner</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Pesquisa interna anônima</strong></td>
+                                <td><code>survey_anonymized.csv</code><br><code>survey_report.pdf</code></td>
+                                <td>≥30% de resposta; relatório com análise e recomendações</td>
+                                <td>Equipe de Pesquisa</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Grupos focais</strong></td>
+                                <td><code>focusgroups_notes.pdf</code></td>
+                                <td>Registro de pelo menos 4 grupos com síntese de insights</td>
+                                <td>Equipe de Pesquisa</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mapeamento de barreiras</strong></td>
+                                <td><code>barriers_map.xlsx</code><br><code>barriers_report.pdf</code></td>
+                                <td>Matriz de priorização com responsáveis e estimativa de esforço</td>
+                                <td>PM / Analista</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Plano de capacitação</strong></td>
+                                <td><code>training_agenda.xlsx</code><br><code>workshop_materials.zip</code></td>
+                                <td>Cronograma e materiais entregues; avaliações pós-workshop com média ≥4/5</td>
+                                <td>Líder de Formação</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Programa de mentoria</strong></td>
+                                <td><code>mentorship_plan.pdf</code></td>
+                                <td>Roteiro de mentorias e 6 mentor-mentee matches funcionando</td>
+                                <td>Coordenador de Comunidade</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Comitê consultivo & roadmap</strong></td>
+                                <td><code>committee_terms.pdf</code><br><code>roadmap.xlsx</code></td>
+                                <td>Comitê constituído (min. 5 membros) e roadmap com marcos e responsáveis</td>
+                                <td>PM / Sponsor</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Relatório final de impacto</strong></td>
+                                <td><code>final_report.pdf</code></td>
+                                <td>Relatório entregue com indicadores e 3–5 recomendações prioritárias</td>
+                                <td>PM / Analista de Dados</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Timeline -->
+    <section class="section" id="cronograma">
+        <div class="section-header">
+            <span class="section-number">3</span>
+            <h2 class="section-title">Cronograma & Agenda</h2>
+            <p class="section-subtitle">Implementação estimada em 8 meses com marcos definidos</p>
+        </div>
+
+        <div class="grid grid-2">
+            <div>
+                <!-- Visualization Chart -->
+                <div class="card animate-on-scroll" style="margin-bottom: 24px; height: 350px;">
+                    <canvas id="timelineChart"></canvas>
+                </div>
+                
+                <!-- Detailed Training Agenda Table -->
+                <div class="card animate-on-scroll" style="margin-top: 24px;">
+                    <h3 style="margin-bottom: 16px; font-size: 18px;">Detalhe da Agenda de Formação</h3>
+                    <div class="table-container">
+                        <table style="font-size: 12px;">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tipo</th>
+                                    <th>Público</th>
+                                    <th>Esforço (h)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>S1</td>
+                                    <td>Workshop Presencial</td>
+                                    <td>Liderança</td>
+                                    <td>24h</td>
+                                </tr>
+                                <tr>
+                                    <td>S2</td>
+                                    <td>Webinar</td>
+                                    <td>Gestores & RH</td>
+                                    <td>12h</td>
+                                </tr>
+                                <tr>
+                                    <td>S4/S5</td>
+                                    <td>E-learning</td>
+                                    <td>Todos</td>
+                                    <td>80h</td>
+                                </tr>
+                                <tr>
+                                    <td>S6</td>
+                                    <td>Microtraining</td>
+                                    <td>Multiplicadores</td>
+                                    <td>16h</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card animate-on-scroll">
+                <h3 style="margin-bottom: 24px;">Marcos Principais</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Semana 0</div>
+                        <div class="timeline-title">Kickoff & Alinhamento</div>
+                        <p style="font-size: 13px; color: var(--color-text-secondary);">Documento de governança e plano de trabalho.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Mês 1–2</div>
+                        <div class="timeline-title">Diagnóstico & Coleta</div>
+                        <p style="font-size: 13px; color: var(--color-text-secondary);">Pesquisa, 4 grupos focais e mapa de barreiras.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Fim do Mês 2</div>
+                        <div class="timeline-title">Análise & Priorização</div>
+                        <p style="font-size: 13px; color: var(--color-text-secondary);">Relatório de barreiras e roadmap priorizado.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Mês 3–5</div>
+                        <div class="timeline-title">Capacitação</div>
+                        <p style="font-size: 13px; color: var(--color-text-secondary);">Workshops entregues e pesquisa pós-treinamento.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Mês 4–7</div>
+                        <div class="timeline-title">Implementação Estrutural</div>
+                        <p style="font-size: 13px; color: var(--color-text-secondary);">Implementação de acomodações e políticas acordadas.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Mês 8</div>
+                        <div class="timeline-title">Consolidação & Relatório Final</div>
+                        <p style="font-size: 13px; color: var(--color-text-secondary);">Entrega do relatório final e dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Risks & RACI -->
+    <section class="section" id="riscos">
+        <div class="section-header">
+            <span class="section-number">4</span>
+            <h2 class="section-title">Gestão de Riscos & RACI</h2>
+            <p class="section-subtitle">Matriz de mitigação, responsabilidades e conformidade LGPD</p>
+        </div>
+
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active" onclick="openTab(event, 'tabRiscos')">Matriz de Riscos</div>
+                <div class="tab" onclick="openTab(event, 'tabRaci')">Matriz RACI</div>
+                <div class="tab" onclick="openTab(event, 'tabLgpd')">LGPD & Privacidade</div>
+            </div>
+
+            <div id="tabRiscos" class="tab-content active animate-on-scroll">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Risco</th>
+                                <th>Impacto</th>
+                                <th>Probabilidade</th>
+                                <th>Mitigação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><strong>Baixa adesão à pesquisa</strong></td>
+                                <td><span style="color: var(--color-danger);">Alto</span></td>
+                                <td>Médio</td>
+                                <td>Comunicação interna, incentivos e extensão de janela.</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><strong>Falta de engajamento da liderança</strong></td>
+                                <td><span style="color: var(--color-danger);">Alto</span></td>
+                                <td>Médio</td>
+                                <td>Sessões de sensibilização com sponsor e liderança executiva.</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><strong>Limitações orçamentárias</strong></td>
+                                <td>Médio</td>
+                                <td>Alto</td>
+                                <td>Modularizar entregáveis e propor fases opcionais.</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><strong>Questões de privacidade (PII)</strong></td>
+                                <td><span style="color: var(--color-danger);">Alto</span></td>
+                                <td>Baixo</td>
+                                <td>Anonimização, termos de consentimento e auditoria LGPD.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="tabRaci" class="tab-content">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Atividade</th>
+                                <th>Aline (PM)</th>
+                                <th>Milca/Caio (Pesquisa)</th>
+                                <th>Thierry/Priscila (Formação)</th>
+                                <th>Noah (Dados)</th>
+                                <th>Sponsor CNPEM</th>
+                                <th>RH CNPEM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Kickoff & Alinhamento</td>
+                                <td><strong>R</strong></td>
+                                <td>C</td>
+                                <td>C</td>
+                                <td>C</td>
+                                <td>A</td>
+                                <td>C</td>
+                            </tr>
+                            <tr>
+                                <td>Diagnóstico</td>
+                                <td>A</td>
+                                <td><strong>R</strong></td>
+                                <td>I</td>
+                                <td>C</td>
+                                <td>C</td>
+                                <td>C</td>
+                            </tr>
+                            <tr>
+                                <td>Análise & Prioritização</td>
+                                <td><strong>R</strong></td>
+                                <td>C</td>
+                                <td>I</td>
+                                <td><strong>R</strong></td>
+                                <td>A</td>
+                                <td>C</td>
+                            </tr>
+                            <tr>
+                                <td>Capacitação</td>
+                                <td>C</td>
+                                <td>C</td>
+                                <td>A</td>
+                                <td>I</td>
+                                <td>I</td>
+                                <td>C</td>
+                            </tr>
+                            <tr>
+                                <td>Mentoria</td>
+                                <td><strong>R</strong></td>
+                                <td>C</td>
+                                <td>A</td>
+                                <td>I</td>
+                                <td>A</td>
+                                <td>C</td>
+                            </tr>
+                            <tr>
+                                <td>Dashboard</td>
+                                <td>C</td>
+                                <td>C</td>
+                                <td>I</td>
+                                <td><strong>R</strong></td>
+                                <td>A</td>
+                                <td>C</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top: 12px; font-size: 13px; color: var(--color-text-secondary);">
+                    Legenda: <strong>R</strong> = Responsável, <strong>A</strong> = Aprovador, <strong>C</strong> = Consultado, <strong>I</strong> = Informado.
+                </div>
+            </div>
+
+            <div id="tabLgpd" class="tab-content">
+                <div class="highlight-box">
+                    <div class="highlight-title"><i class="fas fa-shield-alt"></i> Medidas Obrigatórias</div>
+                    <p style="font-size: 14px; margin-bottom: 20px;">O tratamento de dados sensíveis (saúde, deficiência) exige atenção redobrada. As 5 medidas abaixo são obrigatórias para conformidade LGPD:</p>
+                    
+                    <div style="margin-bottom: 24px; overflow-x: auto;">
+                        <table style="font-size: 13px; width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%;">#</th>
+                                    <th style="width: 20%;">Medida</th>
+                                    <th style="width: 40%;">Descrição</th>
+                                    <th style="width: 25%;">Owner</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><strong>DPIA obrigatório</strong></td>
+                                    <td>Para qualquer coleta de dados sensíveis, parecer jurídico e técnico antes do piloto</td>
+                                    <td>CNPEM Legal + DiverCidade</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><strong>Minimização de dados</strong></td>
+                                    <td>Coletar apenas o estritamente necessário e garantir opções "prefiro não responder"</td>
+                                    <td>CNPEM RH</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><strong>Armazenamento seguro</strong></td>
+                                    <td>Usar repositório controlado (Google Workspace institucional) com logs de acesso e DPA com fornecedores</td>
+                                    <td>CNPEM TI</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td><strong>Retenção e anonimização</strong></td>
+                                    <td>Dados identificáveis por até 12 meses; análise somente em forma agregada</td>
+                                    <td>CNPEM Legal</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td><strong>Treinamento de acesso</strong></td>
+                                    <td>Capacitar quem terá acesso a dados sensíveis sobre procedimentos operacionais de segurança</td>
+                                    <td>CNPEM RH</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <h4 style="margin-bottom: 16px; color: var(--color-text-primary);"><i class="fas fa-check-circle" style="margin-right: 8px; color: var(--divercidade-primary);"></i>Itens que Exigem Sign-off</h4>
+                    <div style="background: var(--color-bg-secondary); padding: 16px; border-radius: 8px; border-left: 4px solid var(--divercidade-primary);">
+                        <ul style="margin-left: 20px; font-size: 14px; color: var(--color-text-primary);">
+                            <li style="margin-bottom: 8px;">Desenho do formulário de coleta</li>
+                            <li style="margin-bottom: 8px;">Local de armazenamento</li>
+                            <li style="margin-bottom: 0px;">Contratos com fornecedores que tratem dados</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <h4 style="margin-bottom: 16px; color: var(--color-text-primary);"><i class="fas fa-list-check" style="margin-right: 8px; color: var(--divercidade-orange);"></i>Checklist de Conformidade</h4>
+                    <div style="background: var(--color-bg-secondary); padding: 16px; border-radius: 8px; border-left: 4px solid var(--divercidade-orange);">
+                        <div style="font-size: 14px;">
+                            <div style="margin-bottom: 10px;"><input type="checkbox" disabled> Verificar existência de PII antes de qualquer extração</div>
+                            <div style="margin-bottom: 10px;"><input type="checkbox" disabled> Aplicar anonimização imediata quando existir PII</div>
+                            <div style="margin-bottom: 10px;"><input type="checkbox" disabled> Incluir cláusula contratual de tratamento de dados (DPA)</div>
+                            <div style="margin-bottom: 10px;"><input type="checkbox" disabled> Definir prazo de retenção de dados brutos (sugerido: 12 meses para identificáveis)</div>
+                            <div style="margin-bottom: 0px;"><input type="checkbox" disabled> Garantir que qualquer base compartilhada esteja adequadamente pseudonimizada/anônima</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Assumptions & Pressuposições -->
+    <section class="section" id="pressuposicoes">
+        <div class="section-header">
+            <span class="section-number">5</span>
+            <h2 class="section-title">Pressuposições & Condições</h2>
+            <p class="section-subtitle">Condições críticas para sucesso do programa</p>
+        </div>
+
+        <div class="grid grid-1" style="gap: 20px;">
+            <div class="card animate-on-scroll" style="border-left: 4px solid var(--divercidade-primary); background: rgba(233,30,140,0.03);">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                    <i class="fas fa-building" style="font-size: 20px; color: var(--divercidade-primary); margin-top: 4px; flex-shrink: 0;"></i>
+                    <div>
+                        <h4 style="margin-bottom: 8px; color: var(--color-text-primary);">Apoio Institucional</h4>
+                        <p style="font-size: 14px; color: var(--color-text-secondary); margin: 0;">A instituição apoiará a divulgação interna e disponibilizará pontos de contato em RH e lideranças para facilitar o engajamento e coleta de dados.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animate-on-scroll" style="border-left: 4px solid var(--divercidade-orange); background: rgba(255,107,53,0.03);">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                    <i class="fas fa-lock" style="font-size: 20px; color: var(--divercidade-orange); margin-top: 4px; flex-shrink: 0;"></i>
+                    <div>
+                        <h4 style="margin-bottom: 8px; color: var(--color-text-primary);">Conformidade de Dados</h4>
+                        <p style="font-size: 14px; color: var(--color-text-secondary); margin: 0;">A coleta de dados será permitida dentro de políticas de privacidade locais e com anonimização quando aplicável, conforme LGPD e regulações vigentes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animate-on-scroll" style="border-left: 4px solid var(--divercidade-blue); background: rgba(67,97,238,0.03);">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                    <i class="fas fa-calendar-alt" style="font-size: 20px; color: var(--divercidade-blue); margin-top: 4px; flex-shrink: 0;"></i>
+                    <div>
+                        <h4 style="margin-bottom: 8px; color: var(--color-text-primary);">Flexibilidade de Cronograma</h4>
+                        <p style="font-size: 14px; color: var(--color-text-secondary); margin: 0;">Cronograma será alinhado em kickoff e poderá sofrer ajustes por motivos operacionais, mediante comunicação formal e acordo das partes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Team Section -->
+     <section class="section" id="equipe" style="background: var(--color-bg-primary);">
+         <div class="section-header">
+             <span class="section-number">6</span>
+             <h2 class="section-title">Equipe DiverCidade HUB</h2>
+             <p class="section-subtitle">Especialistas com vivência e conhecimento técnico</p>
+        </div>
+
+        <div class="animate-on-scroll">
+            <div class="team-scroll">
+                <!-- Aline -->
+                <div class="team-member">
+                    <div class="team-avatar"><i class="fas fa-user"></i></div>
+                    <h4>Aline Messias</h4>
+                    <p style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 8px;">PM / Coordenação</p>
+                    <p style="font-size: 12px; line-height: 1.5;">10 anos em cosméticos e marketing, 3 dedicados a DE&I. Especialista em acessibilidade e inclusão de pessoas com deficiência. Mulher com deficiência no mercado de trabalho, atua ativamente na construção de ambientes realmente acessíveis e inclusivos.</p>
+                </div>
+                <!-- Milca -->
+                <div class="team-member">
+                    <div class="team-avatar"><i class="fas fa-user-tie"></i></div>
+                    <h4>Milca da Silva</h4>
+                    <p style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 8px;">Equipe de Pesquisa</p>
+                    <p style="font-size: 12px; line-height: 1.5;">20+ anos de carreira em grandes instituições (Paraná Banco, Nubank). Consultora especializada em DE&I com foco em PcD. Coordenadora de Diversidade do Instituto XP Inc., com expertise em políticas corporativas inclusivas e estratégias estruturadas.</p>
+                </div>
+                <!-- Thierry -->
+                <div class="team-member">
+                    <div class="team-avatar"><i class="fas fa-lightbulb"></i></div>
+                    <h4>Thierry Marcondes</h4>
+                    <p style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 8px;">Líder de Formação</p>
+                    <p style="font-size: 12px; line-height: 1.5;">Engenheiro Mecânico Unicamp, empreendedor de startups em acessibilidade. Professor convidado da FDC. Líder em programas de transformação digital e inovação, com foco especial na inclusão de comunidades surdas como vetor de competitividade.</p>
+                </div>
+                <!-- Priscila -->
+                <div class="team-member">
+                    <div class="team-avatar"><i class="fas fa-users"></i></div>
+                    <h4>Priscila Siqueira</h4>
+                    <p style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 8px;">Líder de Formação</p>
+                    <p style="font-size: 12px; line-height: 1.5;">Psicóloga e fundadora do Vale PCD. TEDx Speaker, LinkedIn Top Voice e consultora da Globo em diversidade e representatividade. Especialista em direitos e inclusão genuína de PcD na sociedade corporativa e mídia.</p>
+                </div>
+                <!-- Caio -->
+                <div class="team-member">
+                    <div class="team-avatar"><i class="fas fa-brain"></i></div>
+                    <h4>Caio Bogos</h4>
+                    <p style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 8px;">Equipe de Pesquisa</p>
+                    <p style="font-size: 12px; line-height: 1.5;">Empreendedor autista, Forbes Under 30. Fundador da aTip/Mindversa com maior base de talentos autistas do Brasil. Especialista em recrutamento afirmativo e inteligência organizacional para neurodiversidade com crescimento de 130% em receita.</p>
+                </div>
+                <!-- Noah -->
+                <div class="team-member">
+                    <div class="team-avatar"><i class="fas fa-database"></i></div>
+                    <h4>Noah Scheffel</h4>
+                    <p style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 8px;">Analista de Dados</p>
+                    <p style="font-size: 12px; line-height: 1.5;">Profissional estratégico em RH, Cultura e Tecnologia. HRBP experiente em Talent Acquisition, People Analytics e Mentoria. Consultor em RH orientado por dados com foco em acessibilidade, segurança psicológica e impacto social.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="orcamento">
+        <div class="section-header">
+            <span class="section-number">7</span>
+            <h2 class="section-title">Orçamento & Investimento</h2>
+            <p class="section-subtitle">Distribuição final aprovada: R$ 80.000,00</p>
+        </div>
+
+        <div class="calculator-grid">
+            <div class="calculator-main">
+                <!-- Breakdown -->
+                <div class="card" style="margin-bottom: 24px;">
+                    <h3 style="margin-bottom: 16px; color: var(--divercidade-primary);"><i class="fas fa-list"></i> Detalhamento por Pilar</h3>
+                    
+                    <div class="module-card" style="border-left: 4px solid var(--divercidade-primary);">
+                        <div class="module-info">
+                            <h4>Pilar 1 – Diagnóstico</h4>
+                            <small style="color: var(--color-text-secondary);">Pesquisa, mapeamento e riscos</small>
+                        </div>
+                        <div style="font-weight: 700;">R$ 15.000</div>
+                    </div>
+
+                    <div class="module-card" style="border-left: 4px solid var(--divercidade-orange);">
+                        <div class="module-info">
+                            <h4>Pilar 2 – Formação</h4>
+                            <small style="color: var(--color-text-secondary);">Capacitação de lideranças (Híbrido)</small>
+                        </div>
+                        <div style="font-weight: 700;">R$ 30.000</div>
+                    </div>
+
+                    <div class="module-card" style="border-left: 4px solid var(--divercidade-purple);">
+                        <div class="module-info">
+                            <h4>Pilar 3 – Fortalecimento</h4>
+                            <small style="color: var(--color-text-secondary);">Mentorias e Comunidade PcD</small>
+                        </div>
+                        <div style="font-weight: 700;">R$ 20.000</div>
+                    </div>
+
+                    <div class="module-card" style="border-left: 4px solid var(--divercidade-blue);">
+                        <div class="module-info">
+                            <h4>Pilar 4 – Governança</h4>
+                            <small style="color: var(--color-text-secondary);">Indicadores e Dashboard</small>
+                        </div>
+                        <div style="font-weight: 700;">R$ 10.000</div>
+                    </div>
+
+                    <div class="module-card" style="border-left: 4px solid var(--color-text-secondary);">
+                        <div class="module-info">
+                            <h4>Gestão do Projeto</h4>
+                            <small style="color: var(--color-text-secondary);">Coordenação e relatórios</small>
+                        </div>
+                        <div style="font-weight: 700;">R$ 5.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Sidebar -->
+            <div class="calculator-sidebar">
+                <div class="card summary-card">
+                    <h4 style="margin-bottom: 16px;">Resumo Financeiro</h4>
+
+                    <div class="summary-total">
+                        <span>INVESTIMENTO TOTAL</span>
+                        <span class="total-value">R$ 80.000</span>
+                    </div>
+
+                    <!-- Payment Terms Breakdown -->
+                    <div style="background: var(--color-bg-secondary); padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+                        <div style="font-size: 12px; font-weight: 700; margin-bottom: 8px;">Cronograma de Pagamento</div>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
+                            <span>1ª Parcela (Assinatura)</span>
+                            <span>R$ 24.000</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
+                            <span>2ª Parcela (Fim Formação - Mês 5)</span>
+                            <span>R$ 24.000</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
+                            <span>3ª Parcela (Entrega Final - Mês 8)</span>
+                            <span>R$ 24.000</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--color-text-secondary);">
+                            <span>Retenção (Aceite Final)</span>
+                            <span>R$ 8.000</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="width: 100%; margin-bottom: 8px;" onclick="window.print()">
+                        <i class="fas fa-file-pdf"></i> Salvar Proposta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contract Terms Section -->
+    <section class="section" style="padding-top: 0;">
+        <div class="card">
+            <h4 style="margin-bottom: 16px;"><i class="fas fa-file-contract"></i> Resumo Contratual</h4>
+            <div class="grid grid-2" style="font-size: 13px; color: var(--color-text-secondary);">
+                <ul>
+                    <li style="margin-bottom: 8px;"><strong>Vigência:</strong> Assinatura até conclusão (estimado 8 meses).</li>
+                    <li style="margin-bottom: 8px;"><strong>Propriedade Intelectual:</strong> Entregáveis produzidos (relatórios) serão entregues com licença de uso para a Contratante.</li>
+                    <li style="margin-bottom: 8px;"><strong>Rescisão:</strong> Por justa causa com notificação de 30 dias.</li>
+                </ul>
+                <ul>
+                    <li style="margin-bottom: 8px;"><strong>Confidencialidade:</strong> Medidas técnicas para proteger dados pessoais.</li>
+                    <li style="margin-bottom: 8px;"><strong>Aceite:</strong> 10 dias úteis após submissão do entregável.</li>
+                    <li style="margin-bottom: 8px;"><strong>Controle:</strong> Mudanças de escopo via Change Request formal.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%); padding: 40px var(--spacing-xl) 30px; margin-top: 40px; border-top: 2px solid var(--divercidade-primary); color: #d0d0d0; position: relative; overflow: hidden;">
+        <!-- Background accent elements -->
+        <div style="position: absolute; top: -50px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(233,30,140,0.08), transparent); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: 100px; left: -80px; width: 250px; height: 250px; background: radial-gradient(circle, rgba(255,107,53,0.06), transparent); border-radius: 50%;"></div>
+
+        <div style="max-width: 1400px; margin: 0 auto; position: relative; z-index: 1;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-bottom: 30px;">
+                <!-- Brand Section -->
+                <div>
+                    <a href="https://www.divercidade.net" target="_blank" style="display: block; margin-bottom: 24px;">
+                        <img src="./assets/images/logo-short-white.png" alt="DiverCidade HUB Logo" style="height: 60px; width: auto; object-fit: contain;">
+                    </a>
+                    <p style="font-size: 14px; line-height: 1.7; color: #b0b0b0; margin-bottom: 28px;">
+                        Pessoas de verdade em ambientes corporativos potentes e sustentáveis. Consultoria especializada em diversidade, equidade e inclusão.
+                    </p>
+                    <!-- Social Media Links -->
+                    <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+                        <a href="https://instagram.com/divercidade_hub" target="_blank" title="Instagram" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(233,30,140,0.15); border: 1px solid rgba(233,30,140,0.3); border-radius: 8px; color: var(--divercidade-primary); transition: all 0.3s ease; text-decoration: none;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/divercidade" target="_blank" title="LinkedIn" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255,107,53,0.15); border: 1px solid rgba(255,107,53,0.3); border-radius: 8px; color: var(--divercidade-orange); transition: all 0.3s ease; text-decoration: none;">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <a href="https://www.divercidade.net" target="_blank" style="display: inline-block; padding: 10px 16px; background: linear-gradient(135deg, var(--divercidade-primary), var(--divercidade-orange)); color: white; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; transition: transform 0.3s ease; cursor: pointer;">
+                        Visitar Website
+                    </a>
+                </div>
+
+                <!-- Contact Section -->
+                <div>
+                    <h4 style="color: white; font-size: 16px; font-weight: 700; margin-bottom: 28px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-envelope" style="color: var(--divercidade-primary);"></i> Emails
+                    </h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
+                        <a href="mailto:contato@divercidade.net" style="text-decoration: none; color: #d0d0d0; transition: color 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                            <span style="color: var(--divercidade-primary);">›</span> contato@divercidade.net
+                        </a>
+                        <a href="mailto:tamara@divercidade.net" style="text-decoration: none; color: #d0d0d0; transition: color 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                            <span style="color: var(--divercidade-primary);">›</span> tamara@divercidade.net
+                        </a>
+                        <a href="mailto:Pedro@divercidade.net" style="text-decoration: none; color: #d0d0d0; transition: color 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                            <span style="color: var(--divercidade-primary);">›</span> Pedro@divercidade.net
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Phone Section -->
+                <div>
+                    <h4 style="color: white; font-size: 16px; font-weight: 700; margin-bottom: 28px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-phone" style="color: var(--divercidade-orange);"></i> Telefones
+                    </h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
+                        <a href="tel:+5519920010580" style="text-decoration: none; color: #d0d0d0; transition: color 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                            <span style="color: var(--divercidade-orange);">›</span> +55 19 920 010 580
+                        </a>
+                        <a href="tel:+5519989797970" style="text-decoration: none; color: #d0d0d0; transition: color 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                            <span style="color: var(--divercidade-orange);">›</span> +55 19 98979-7970
+                        </a>
+                        <a href="tel:+5519998837282" style="text-decoration: none; color: #d0d0d0; transition: color 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                            <span style="color: var(--divercidade-orange);">›</span> +55 19 99883-7282
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Social Section -->
+                <div>
+                    <h4 style="color: white; font-size: 16px; font-weight: 700; margin-bottom: 28px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-share-nodes" style="color: var(--divercidade-purple);"></i> Social
+                    </h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
+                        <a href="https://instagram.com/divercidade_hub" target="_blank" style="text-decoration: none; color: #d0d0d0; transition: color 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                            <span style="color: var(--divercidade-purple);">›</span> Instagram: divercidade_hub
+                        </a>
+                        <a href="https://linkedin.com/company/divercidade" target="_blank" style="text-decoration: none; color: #d0d0d0; transition: color 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                            <span style="color: var(--divercidade-purple);">›</span> LinkedIn: divercidade
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div style="height: 1px; background: linear-gradient(90deg, transparent, rgba(233,30,140,0.3), transparent); margin-bottom: 20px;"></div>
+
+            <!-- Footer Bottom -->
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; font-size: 13px;">
+                <p style="color: #909090;">&copy; 2026 DiverCidade HUB. Todos os direitos reservados.</p>
+                <div style="display: flex; gap: 24px; color: #909090;">
+                    <span><strong>Projeto:</strong> Inclusão Real</span>
+                    <span><strong>Data:</strong> Fev 2026</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // --- Theme Toggle ---
+        const themeBtn = document.getElementById('themeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+            updateChartsTheme();
+        });
+
+        // --- Mobile Nav ---
+        document.getElementById('navToggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // --- Tabs Logic ---
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.className += " active";
+        }
+
+        // --- Animations ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // --- Charts ---
+        const chartColor = () => body.classList.contains('dark') ? '#FFFFFF' : '#212121';
+
+        const ctxTimeline = document.getElementById('timelineChart').getContext('2d');
+        let timelineChart = new Chart(ctxTimeline, {
+            type: 'bar',
+            data: {
+                labels: ['Kickoff', 'Diagnóstico', 'Priorização', 'Capacitação', 'Implementação', 'Consolidação'],
+                datasets: [{
+                    label: 'Esforço Estimado (Semanas/Meses)',
+                    data: [1, 8, 2, 12, 16, 4], // Normalized to rough weeks based on CSV data
+                    backgroundColor: ['#7B2CBF', '#E91E8C', '#FF6B35', '#00C9A7', '#4361EE', '#5F6368'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { color: chartColor() }, title: { display: true, text: 'Duração (Semanas)' } },
+                    y: { ticks: { color: chartColor() } }
+                }
+            }
+        });
+
+        function updateChartsTheme() {
+            const color = chartColor();
+            timelineChart.options.scales.x.ticks.color = color;
+            timelineChart.options.scales.y.ticks.color = color;
+            timelineChart.update();
+        }
+    </script>
+</body>
+
+</html>
